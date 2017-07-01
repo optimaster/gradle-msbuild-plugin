@@ -1,0 +1,20 @@
+apply plugin: 'maven-publish'
+
+publishing {
+  repositories {
+    maven {
+      if (version.endsWith('-SNAPSHOT')) {
+        url 'https://develop.optimaster.eu/nexus/repository/maven-public-snapshots'
+      } else {
+        url 'https://develop.optimaster.eu/nexus/repository/maven-public-releases'
+      }
+
+      if (project.hasProperty('repositoryUser') && project.hasProperty('repositoryPassword')) {
+        credentials {
+          username repositoryUser
+          password repositoryPassword
+        }
+      }
+    }
+  }
+}

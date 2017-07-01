@@ -24,6 +24,8 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
 }
 
+apply from: 'custom.gradle'
+
 nuget {
     // still experiencing freezes on mono with nuget 3.3.0
     version = '2.8.6'
@@ -86,6 +88,3 @@ plugindev {
     projectInceptionYear '2012'
     done()
 }
-
-project.tasks.afterReleaseBuild.dependsOn project.tasks.bintrayUpload
-
