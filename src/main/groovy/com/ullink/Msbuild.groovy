@@ -16,6 +16,7 @@ class Msbuild extends ConventionTask {
     def solutionFile
     def projectFile
     String loggerAssembly
+    Boolean parallel
     Boolean optimize
     Boolean debugSymbols
     String debugType
@@ -181,6 +182,10 @@ class Msbuild extends ConventionTask {
         String verb = getMSVerbosity(verbosity)
         if (verb) {
             commandLineArgs += '/v:' + verb
+        }
+
+        if (parallel) {
+            commandLineArgs += '/m'
         }
 
         def cmdParameters = getInitProperties()
